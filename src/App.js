@@ -4,11 +4,21 @@ import Layout from './components/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 
 class App extends Component {
-  render () {
+    state = {
+        show:true,
+    };
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({show: false});
+        }, 2000);
+    }
+
+    render () {
     return (
       <div>
         <Layout>
-          <BurgerBuilder />
+            {this.state.show ? <BurgerBuilder/> : null}
         </Layout>
       </div>
     );

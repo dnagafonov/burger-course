@@ -4,16 +4,13 @@ import Aux from '../../../hoc/myAux'
 import Button from '../../UI/Button/Button'
 
 class OrderSymmury extends React.Component{
-    componentWillUpdate() {
-        console.log("order will update")
-    }
-
     render() {
         const ingredientSummury = Object.keys(this.props.ingredients)
             .map(ingKey =>
                 <li key={ingKey}>
                     <span style={{textTransform: "capitalize"}}>{ingKey}</span>:{this.props.ingredients[ingKey]}
                 </li>);
+        const {price , purchaseCanceled, purchaseContinue} = this.props;
         return (
             <Aux>
                 <h3>Your order</h3>
@@ -21,10 +18,10 @@ class OrderSymmury extends React.Component{
                 <ul>
                     {ingredientSummury}
                 </ul>
-                <p><strong>Total price: {this.props.price.toFixed(2)}$</strong></p>
+                <p><strong>Total price: {price.toFixed(2)}$</strong></p>
                 <div>Continue?</div>
-                <Button btnType='Danger' clictked={this.props.purchaseCanceled}>CANCEL</Button>
-                <Button btnType='Success' clicked={this.props.purchaseContinue}>CONTINUE</Button>
+                <Button btnType='Danger' clicked={purchaseCanceled}>CANCEL</Button>
+                <Button btnType='Success' clicked={purchaseContinue}>CONTINUE</Button>
             </Aux>
         )
     }
